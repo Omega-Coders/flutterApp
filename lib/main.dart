@@ -129,7 +129,8 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.all(16.0),
                   child: Image.file(File(_imagePath == null
                       ? (_imagePath = '')
-                      : _imagePath = ReSize(_imagePath.toString()))),
+                      : _imagePath = copyCrop(
+                          ReSize(_imagePath.toString()), 28, 39, 102, 26))),
                 ),
               ),
             ],

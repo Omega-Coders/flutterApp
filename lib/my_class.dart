@@ -34,7 +34,7 @@ String copyCrop(String src_, int x, int y, w, int h) {
 
 String ReSize(String src_) {
   final src = decodeImage(File(src_).readAsBytesSync())!;
-  Image thumbnail = copyResize(src, width: 4000, height: 4000);
+  Image thumbnail = copyResize(src, width: 491, height: 648);
 
   File(src_).delete();
   if (File(src_).existsSync()) {
