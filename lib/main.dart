@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:edge_detection/edge_detection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'my_class.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,9 +29,11 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       imagePath = (await EdgeDetection.detectEdge);
+
       print("$imagePath");
     } on PlatformException catch (e) {
       imagePath = e.toString();
+      imagePath = ReSize(imagePath);
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -124,9 +127,9 @@ class _MyAppState extends State<MyApp> {
                 visible: _imagePath != null,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Image.file(
-                    File(_imagePath ?? ''),
-                  ),
+                  child: Image.file(File(_imagePath == null
+                      ? (_imagePath = '')
+                      : _imagePath = ReSize(_imagePath.toString()))),
                 ),
               ),
             ],
